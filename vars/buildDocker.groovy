@@ -1,33 +1,28 @@
 def call(Map config = [:]) {
-
     def image = config.image ?: 'app:latest'
     def env = config.env ?: 'dev'
-    def isNext = config.next ?: false
-    def isSpring = config.spring ?: false
 
-    def dockerfilePath = detectProject(env, isNext, isSpring)
+    def dockerfilePath = detectProject(env)
 
     echo "Detected Dockerfile: ${dockerfilePath}"
 
-    writeFile(
-        file: 'Dockerfile',
-        text: libraryResource(dockerfilePath)
-    )
+    writeFile file: 'Dockerfile', text: libraryResource(dockerfilePath)
 
-    sh "docker build -t ${image} ."
+    sh """
+        docker build -t ${image} .
+    """
 }
 
 /* ---------------- helpers ---------------- */
 
-def detectProject(String env, boolean isNext, boolean isSpring) {
-
-    if (isNext) {
+def detectProject(String env) {
+    if (${prams.NEXT}) {
         return "nextjs/${env}.Dockerfile"
     }
 
-    if (isSpring) {
+    if (${prams.SPRING}) {
         return "spring/${env}.Dockerfile"
     }
 
-    error "❌ Unsupported project type (NEXT or SPRING must be true)"
+    error "❌ Unsupported project type"
 }
