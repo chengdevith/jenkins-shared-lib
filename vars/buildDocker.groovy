@@ -2,8 +2,8 @@ def call(Map config = [:]) {
 
     def image = config.image ?: 'app:latest'
     def env = config.env ?: 'dev'
-    def isNext = ${params.isNext}
-    def isSpring = ${params.isSpring}
+    def isNext = config.next ?: false
+    def isSpring = config.spring ?: false
 
     def dockerfilePath = detectProject(env, isNext, isSpring)
 
