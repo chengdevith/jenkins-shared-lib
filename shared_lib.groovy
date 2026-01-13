@@ -9,7 +9,9 @@ pipeline {
         stage('Build') {
             steps {
                 buildDocker(
-                    image: FULL_IMAGE
+                    image: FULL_IMAGE,
+                    next: params.isNext,
+                    spring: params.isSpring
                 )
             }
         }
