@@ -6,13 +6,11 @@ def call() {
         sh '''
         curl -s -X POST https://api.telegram.org/bot$BOT_TOKEN/sendMessage \
         -d chat_id=$CHAT_ID \
-        -d parse_mode=MarkdownV2 \
-        -d text="✅ \\*Job SUCCESS\\*
-        
-\\*Project:\\* JobFinder Frontend
-\\*Job:\\* $JOB_NAME
-\\*Build:\\* \\#$BUILD_NUMBER
-\\*SonarQube:\\* Quality Gate PASSED 🎯"
+        -d text="Job SUCCESS
+Project: JobFinder Frontend
+Job: $JOB_NAME
+Build: #$BUILD_NUMBER
+SonarQube: Quality Gate PASSED"
         '''
     }
 }
