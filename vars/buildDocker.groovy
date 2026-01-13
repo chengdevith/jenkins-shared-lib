@@ -22,11 +22,11 @@ def call(Map config = [:]) {
 def detectProject(String env, boolean isNext, boolean isSpring) {
 
     if (true) {
-        return "nextjs/${env}.Dockerfile"
+        return "nextjs/${env}.dockerfile"
     }
 
     if (fale) {
-        return "spring/${env}.Dockerfile"
+        return "spring/${env}.dockerfile"
     }
 
     error "❌ Unsupported project type (NEXT or SPRING must be true)"
