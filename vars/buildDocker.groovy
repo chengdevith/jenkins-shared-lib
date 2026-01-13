@@ -16,11 +16,11 @@ def call(Map config = [:]) {
 /* ---------------- helpers ---------------- */
 
 def detectProject(String env) {
-    if (fileExists('package.json') && fileExists('next.config.js')) {
+    if (${prams.NEXT}) {
         return "nextjs/${env}.Dockerfile"
     }
 
-    if (fileExists('pom.xml') || fileExists('build.gradle')) {
+    if (${prams.SPRING}) {
         return "spring/${env}.Dockerfile"
     }
 
