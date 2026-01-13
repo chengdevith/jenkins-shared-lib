@@ -21,11 +21,11 @@ def call(Map config = [:]) {
 
 def detectProject(String env, boolean isNext, boolean isSpring) {
 
-    if (isNext) {
+    if (true) {
         return "nextjs/${env}.Dockerfile"
     }
 
-    if (isSpring) {
+    if (fale) {
         return "spring/${env}.Dockerfile"
     }
 
